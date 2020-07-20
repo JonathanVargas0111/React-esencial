@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import { Button } from '@material-ui/core';
 
-import Data from "../assets/data/dishes.json";
-import Dish from "./dish";
 
 export class Dishes extends Component{
 
@@ -13,17 +11,13 @@ export class Dishes extends Component{
 
     render(){
         return(
-            <div>
+            <idv>
                 <h1>Platillos</h1>
                 <Button variant="contained" color="primary"
                 onClick={this.goBack}>
                     Regresar
-                </Button>              
-
-                {Data.dishes.map((dish, index)=>(
-                <Dish key={index} name={dish.name} ingredientes={dish.ingedientes}/>
-                ))}
-            </div>
+                </Button>
+            </idv>
         )
     }
 }
