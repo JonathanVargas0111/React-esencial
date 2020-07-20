@@ -1,5 +1,4 @@
 import React, {Component , Fragment} from "react";
-import GridList from '@material-ui/core/GridList';
 
 
 //Clase del componente
@@ -23,21 +22,21 @@ class Ingredient extends Component{
     }
 }
 
-class Dish extends Component{ 
-    render(){        
+
+
+class Dish extends Component{
+    dishes = ["Tacos", "Ceviche","Paella"];
+    countIngredients(){
+        return this.dishes.length;
+    }
+    render(){
+        const { params} = this.props.match;
         return(
         <div className="dish">
-            <GridList cellHeight={160} cols={3}>
-                <div className="dish">
-                        <div>
-                            {this.props.name}
-                        </div>
-                        {this.props.ingredientes.map(
-                            (ingredientes, index) =>(
-                            <div key={index}>{ingredientes}</div>
-                            ))}
-                </div>
-            </GridList>
+            <h1>{params.name} </h1>
+            <h1>{this.props.name} </h1>
+            <h3>{this.countIngredients()}</h3>
+            <Ingredient/>            
         </div>
         )        
     }
