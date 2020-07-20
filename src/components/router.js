@@ -5,15 +5,17 @@ import App from "./../App";
 import Dishes from "./dishes";
 import Dish from "./dish";
 import Countries from "./countries";
-import NotFound from "./norfound";
+import NotFound from "./notfound";
 
 
 const Router =()=>(
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={App}/>
-                <Route exact path="/Dishes" component={Dishes}/>
+                <Route exact path="/Platillos" component={Dishes}/>
+                <Route exact path="/Platillo/:name" component={Dish}/>
                 <Route exact path="/Countries" component={Countries}/>
+                <Route component={NotFound}/>
             </Switch>
         </BrowserRouter>
     );
