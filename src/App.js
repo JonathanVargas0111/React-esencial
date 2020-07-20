@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header  from "./components/header";
+import Dish  from "./components/dish";
+import NewDish  from "./components/newDish";
+
+import './styles/App.css';
+import './styles/dish.css';
+
+
+let dish = "tacos"; 
+let dishes = ["Tacos", "Ceviche","Paella"];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header></Header>
+      <NewDish></NewDish>
+      <Dish name={dish} qty="3"></Dish>
+      Yo como {dish}
+    <ul>
+      {
+        dishes.map( (dish,index) => <li key={index}>{dish}</li>)
+      }
+    </ul>
     </div>
   );
 }
