@@ -13,10 +13,11 @@ class NewDish extends Component {
     newDish=React.createRef();
 
     addDish = event =>{
-        console.log("Agregar platillo")
         event.preventDefault();
-        console.log(this.newDish.value)
-    }
+        this.props.onAddDish(this.newDish.value);
+        this.newDish.value="";
+        console.log(this.newDish.value);
+    };
 
     render(){
         return(

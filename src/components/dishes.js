@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { Button, List, ListItem, ListSubheader, ListItemText, ListItemIcon, GridList } from '@material-ui/core';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
-import data from '../assets/data/dishes.json'
 import Dish from "./dish";
 
 
@@ -12,14 +11,13 @@ export class Dishes extends Component{
         this.props.history.push("/");
     };
 
+    updateDish = (index, updatedName)=>{
+        this.props.onUpdateDish(index, updatedName);
+    };
+
     render(){
         return(
-            <idv>
-                <h1>Platillos</h1>
-                <Button variant="contained" color="primary"
-                onClick={this.goBack}>
-                    Regresar
-                </Button>
+            <div>
                 {/* {data.dishes.map(
                     dish =>(
                         <List
@@ -40,13 +38,15 @@ export class Dishes extends Component{
                 )} */}
 
                 <GridList>
-                    {data.dishes.map((dish, index)=>(
-                        <Dish key={index} name={dish.name} ingrendients={dish.ingedientes}/>
+                    {this.props.data.dishes.map((dish, index)=>(
+                        <Dish key={index} name={dish.name} ingrendients={dish.ingedientes}
+                        index={index}
+                        onUpdateDish={this.updateDish}/>
                     ))}
                 </GridList>
 
                 
-            </idv>
+            </div>
         )
     }
 }

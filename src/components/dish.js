@@ -1,5 +1,6 @@
 import React, {Component , Fragment} from "react";
-import { Button, List, ListItem, ListSubheader, ListItemText, ListItemIcon, Card, CardContent, GridList} from '@material-ui/core';
+import { IconButton, List, ListItem, ListSubheader, ListItemText, ListItemIcon, Card, CardContent, GridList, TextField} from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
 
@@ -32,6 +33,25 @@ class Dish extends Component{
     countIngredients(){
         return this.dishes.length;
     }
+
+    state = {
+        edit: false,
+        name: this.props.name
+    };
+
+    edit = e => {
+        this.setState({ edit : !this.state.edit})
+    };
+
+    handleChange = e =>{
+        let newState = {...this.state};
+        newState.name = e.currentTarget.value;
+
+        this.setState(newState);    
+        this.props.onUpdateDish(this.props.index , newState.name);
+
+    };
+
     render(){
         //const { params} = this.props.match;
         return(
@@ -41,10 +61,26 @@ class Dish extends Component{
                         component="nav"
                         subheader={
                             <ListSubheader component="div">
-                                {this.props.name}
-                            </ListSubheader>
+                                {this.state.edit ?(
+                                <TextField
+                                    label = "Platillo..."
+                                    type="text"
+                                    margin="normal"
+                                    variant="outlined"
+                                    value = {this.state.name}
+                                    onChange = {this.handleChange}
+                                    />
+                                    
+                                    ):(
+                                        this.props.name
+                                    )}
+                                    <IconButton size="small" onClick={this.edit}>
+                                        <EditIcon/>
+                                    </IconButton>
+                                </ListSubheader>
                         }
                     >
+
                         {this.props.ingrendients.map((ingrendient, index)=>(
                             <ListItem button key={index}>
                                 <ListItemIcon>
