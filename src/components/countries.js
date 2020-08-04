@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import Button from "@material-ui/core/Button";
-
 export class Countries extends Component{
-
     getCountries(){
         fetch("https://restcountries.eu/rest/v2/lang/es").then
         (
@@ -12,8 +10,6 @@ export class Countries extends Component{
         .then(data => console.log(data))
         .catch(error => console.log(error))
     }
-
-
     render(){
         return (
             <div>
@@ -22,7 +18,7 @@ export class Countries extends Component{
                     onClick={this.getCountries}
                     >
                     Cargar lista
-                </Button>                
+                </Button> 
             </div>
         )
     }

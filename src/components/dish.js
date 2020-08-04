@@ -1,5 +1,7 @@
 import React, {Component , Fragment} from "react";
-import GridList from '@material-ui/core/GridList';
+import { Button, List, ListItem, ListSubheader, ListItemText, ListItemIcon, Card, CardContent, GridList} from '@material-ui/core';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
 
 
 //Clase del componente
@@ -23,22 +25,42 @@ class Ingredient extends Component{
     }
 }
 
-class Dish extends Component{ 
-    render(){        
+
+
+class Dish extends Component{
+    dishes = ["Tacos", "Ceviche","Paella"];
+    countIngredients(){
+        return this.dishes.length;
+    }
+    render(){
+        //const { params} = this.props.match;
         return(
-        <div className="dish">
-            <GridList cellHeight={160} cols={3}>
-                <div className="dish">
-                        <div>
-                            {this.props.name}
-                        </div>
-                        {this.props.ingredientes.map(
-                            (ingredientes, index) =>(
-                            <div key={index}>{ingredientes}</div>
-                            ))}
-                </div>
-            </GridList>
-        </div>
+            <Card className="card">
+                <CardContent>
+                    <List 
+                        component="nav"
+                        subheader={
+                            <ListSubheader component="div">
+                                {this.props.name}
+                            </ListSubheader>
+                        }
+                    >
+                        {this.props.ingrendients.map((ingrendient, index)=>(
+                            <ListItem button key={index}>
+                                <ListItemIcon>
+                                    <ScatterPlotIcon/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    inset primary={ingrendient}
+                                />
+                            </ListItem>
+                        ))}              
+
+                    </List>
+                </CardContent>
+
+            </Card>
+
         )        
     }
 }
